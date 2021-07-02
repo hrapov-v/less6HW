@@ -1,5 +1,6 @@
 package superky.keytwo.mynotes;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 public class ViewNotes extends Fragment {
 
@@ -36,6 +38,11 @@ public class ViewNotes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_view_notes, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_notes, container, false);
+        EditText editText = view.findViewById(R.id.view_note);
+//        TypedArray notes = (getResources().obtainTypedArray(R.array.noteBody));
+        String[] s = getResources().getStringArray(R.array.noteBody);
+        editText.setText(s[index]);
+        return view;
     }
 }

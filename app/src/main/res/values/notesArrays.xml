@@ -6,11 +6,14 @@
         <item>Note 3</item>
         <item>Note 4</item>
         <item>Note 5</item>
-        <item>Note 6</item>
     </string-array>
 
     <string-array name="noteBody">
-
+        <item>Text text text bla bla NOTE 1</item>
+        <item>Text text text bla bla NOTE 2</item>
+        <item>Text text text bla bla NOTE 3</item>
+        <item>Text text text bla bla NOTE 4</item>
+        <item>Text text text bla bla NOTE 5</item>
     </string-array>
 
 </resources>
