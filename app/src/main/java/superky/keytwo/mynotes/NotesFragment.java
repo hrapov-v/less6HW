@@ -1,5 +1,7 @@
 package superky.keytwo.mynotes;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,17 @@ import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
 
+    private boolean isLandscape;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if (isLandscape) {
+            showLandNote(0);
+
+        }
+    }
 
     public static NotesFragment newInstance(String param1, String param2) {
         NotesFragment fragment = new NotesFragment();
@@ -47,8 +60,31 @@ public class NotesFragment extends Fragment {
         for (int i = 0; i < notes.length; i++) {
             TextView textView = new TextView(getContext());
             textView.setText(notes[i]);
-            textView.setTextSize(25);
+            final int finalI = i;
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isLandscape) {
+                        showLandNote(finalI);
+                    } else {
+                        showPortNote(finalI);
+                    }
+                }
+            });
+            textView.setTextSize(45);
             linearLayout.addView(textView);
         }
+    }
+
+    private void showPortNote(int finalI) {
+        Intent intent = new Intent(getActivity(), NotesViewPort.class);
+        intent.putExtra(ViewNotes.KEY_INDEX, finalI);
+        startActivity(intent);
+    }
+
+    private void showLandNote(int index) {
+        ViewNotes viewNotes = ViewNotes.newInstance(index);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(
+                R.id.notes_container_land, viewNotes).commit();
     }
 }

@@ -10,14 +10,17 @@ import android.view.ViewGroup;
 
 public class ViewNotes extends Fragment {
 
+    public static final String KEY_INDEX = "index";
+    private int index;
+
     public ViewNotes() {
         // Required empty public constructor
     }
 
-    public static ViewNotes newInstance(String param1, String param2) {
+    public static ViewNotes newInstance(int index) {
         ViewNotes fragment = new ViewNotes();
         Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
+        args.putInt(KEY_INDEX, index);
         fragment.setArguments(args);
         return fragment;
     }
@@ -26,6 +29,7 @@ public class ViewNotes extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            index = getArguments().getInt(KEY_INDEX);
         }
     }
 
