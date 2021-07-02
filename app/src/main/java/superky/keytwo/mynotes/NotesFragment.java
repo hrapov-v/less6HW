@@ -39,7 +39,10 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayout linearLayout = (LinearLayout) view;
+        createTextView((LinearLayout) view);
+    }
+
+    private void createTextView(@NonNull LinearLayout linearLayout) {
         String[] notes = getResources().getStringArray(R.array.notes);
         for (int i = 0; i < notes.length; i++) {
             TextView textView = new TextView(getContext());
