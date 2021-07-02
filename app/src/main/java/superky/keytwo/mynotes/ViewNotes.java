@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ViewNotes extends Fragment {
 
@@ -39,10 +42,12 @@ public class ViewNotes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_notes, container, false);
+        TextView textView = view.findViewById(R.id.note_name_view);
         EditText editText = view.findViewById(R.id.view_note);
-//        TypedArray notes = (getResources().obtainTypedArray(R.array.noteBody));
-        String[] s = getResources().getStringArray(R.array.noteBody);
-        editText.setText(s[index]);
+        String[] sName = getResources().getStringArray(R.array.notes);
+        String[] sBody = getResources().getStringArray(R.array.noteBody);
+        textView.setText(sName[index]);
+        editText.setText(sBody[index]);
         return view;
     }
 }

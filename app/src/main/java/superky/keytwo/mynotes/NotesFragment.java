@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
@@ -58,6 +59,7 @@ public class NotesFragment extends Fragment {
     private void createTextView(@NonNull LinearLayout linearLayout) {
         String[] notes = getResources().getStringArray(R.array.notes);
         for (int i = 0; i < notes.length; i++) {
+//            ScrollView scrollView = new ScrollView(getContext());
             TextView textView = new TextView(getContext());
             textView.setText(notes[i]);
             final int finalI = i;
@@ -73,6 +75,7 @@ public class NotesFragment extends Fragment {
             });
             textView.setTextSize(45);
             linearLayout.addView(textView);
+//            linearLayout.addView(scrollView);
         }
     }
 
