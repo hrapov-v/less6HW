@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/BtnBack"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnBackTxt"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btnStgnsTxt"
         app:layout_constraintEnd_toEndOf="@id/btnMain"
-        app:layout_constraintStart_toEndOf="@id/BtnBack"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -51,5 +51,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BtnBack" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>
