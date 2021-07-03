@@ -6,11 +6,11 @@
     android:orientation="vertical"
     tools:context=".MainFragment">
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swichBackStack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="USE BACK STACK"
+        android:text="@string/use_back_stack"
         android:textSize="@dimen/SzBody" />
 
     <RadioGroup
@@ -21,29 +21,29 @@
             android:id="@+id/radioBtnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADD"
+            android:text="@string/add"
             android:textSize="@dimen/SzBody" />
 
         <RadioButton
             android:id="@+id/radioBtnReplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Replace"
+            android:text="@string/replace"
             android:textSize="@dimen/SzBody" />
     </RadioGroup>
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swichBackAsRemove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back as remove fragment"
+        android:text="@string/back_as_remove_fragment"
         android:textSize="@dimen/SzBody" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swichBackDeleteBeforeAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete before add"
+        android:text="@string/delete_before_add"
         android:textSize="@dimen/SzBody" />
 
 </LinearLayout>
