@@ -12,4 +12,6 @@
     <string name="delete_before_add">Delete before add</string>
     <string name="replace">Replace</string>
     <string name="add">ADD</string>
+    <string name="info_txt">App Notes by Vasiliy Khrapov</string>
+    <string name="my_code_link">My code: https://github.com/hrapov-v/less6HW</string>
 </resources>

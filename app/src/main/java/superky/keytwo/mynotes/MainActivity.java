@@ -29,29 +29,67 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        initButtonMain();
+        Button buttonSettings = findViewById(R.id.btnStgns);
+        initButtonInfo();
+
+    }
+
+    private void initButtonInfo() {
+        Button buttonInfo = findViewById(R.id.btnInfo);
+        buttonInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                if (Settings.isDeleteBeforeAdd) {
+                    List<Fragment> fragmentList = fragmentManager.getFragments();
+                    for (int i = 0; i < fragmentList.size(); i++) {
+                        Fragment fragment = fragmentList.get(i);
+                        if (fragment.isVisible()) {
+                            fragmentTransaction.remove(fragment);
+                        }
+                    }
+                }
+                if (Settings.isAddFragment) {
+                    fragmentTransaction.add(R.id.container_fragment, new InfoFragment());
+                } else {
+                    fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
+                }
+                if (Settings.isBackStack) {
+                    fragmentTransaction.addToBackStack(null);
+                }
+                fragmentTransaction.commit();
+            }
+        });
+    }
+
+    private void initButtonMain() {
         Button buttonMain = findViewById(R.id.btnMain);
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                if(Settings.isDeleteBeforeAdd) {
+                if (Settings.isDeleteBeforeAdd) {
                     List<Fragment> fragmentList = fragmentManager.getFragments();
-                    for(int i = 0; i < fragmentList.size(); i++) {
+                    for (int i = 0; i < fragmentList.size(); i++) {
                         Fragment fragment = fragmentList.get(i);
-                        if(fragment.isVisible()) {
+                        if (fragment.isVisible()) {
                             fragmentTransaction.remove(fragment);
                         }
                     }
                 }
-                //if(Settings.isAddFragment) {
+                if (Settings.isAddFragment) {
                     fragmentTransaction.add(R.id.container_fragment, new MainFragment());
-                //}
+                } else {
+                    fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
+                }
+                if (Settings.isBackStack) {
+                    fragmentTransaction.addToBackStack(null);
+                }
                 fragmentTransaction.commit();
             }
         });
-        Button buttonSettings = findViewById(R.id.btnStgns);
-        Button buttonInfo = findViewById(R.id.btnInfo);
-
     }
 }
