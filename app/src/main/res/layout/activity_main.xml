@@ -44,12 +44,20 @@
         app:layout_constraintStart_toEndOf="@id/btnMain"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
-        android:id="@+id/notes"
-        android:name="superky.keytwo.mynotes.NotesFragment"
+<!--    <fragment-->
+<!--        android:id="@+id/notes"-->
+<!--        android:name="superky.keytwo.mynotes.NotesFragment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/btnBack" />-->
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/container_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

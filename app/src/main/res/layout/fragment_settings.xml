@@ -6,6 +6,13 @@
     android:orientation="vertical"
     tools:context=".MainFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Тестовые настройки из конспекта (не выношу в ресурсы временное Text VieW"
+        android:layout_gravity="center"/>
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swichBackStack"
         android:layout_width="match_parent"

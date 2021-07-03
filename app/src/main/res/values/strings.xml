@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btnBackTxt">Back</string>
     <string name="btnStgnsTxt">Settings</string>
-    <string name="btnMainTxt">Main</string>
+    <string name="btnMainTxt">Notes</string>
     <string name="btnInfoTxt">Info</string>
     <string name="infoTxtFragment">INFO</string>
     <string name="use_back_stack">USE BACK STACK</string>
