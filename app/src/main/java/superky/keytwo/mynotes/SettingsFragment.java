@@ -18,6 +18,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        loadSettings();
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         initView(view);
         return view;
@@ -36,11 +37,11 @@ public class SettingsFragment extends Fragment {
     //отвечает за замену фрагментов
     private void initRadioReplace(View view) {
         RadioButton radioButtonRplc = view.findViewById(R.id.radioBtnReplace);
-        radioButtonRplc.setChecked(Settings.isAddFragment);
+        radioButtonRplc.setChecked(Settings.isReplaceFragment);
         radioButtonRplc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Settings.isAddFragment = isChecked;
+                Settings.isReplaceFragment = isChecked;
                 saveSettings();
             }
         });
@@ -108,6 +109,16 @@ public class SettingsFragment extends Fragment {
         editor.putBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, Settings.isDeleteBeforeAdd);
         editor.putBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, Settings.isBackRemove);
         editor.putBoolean(Settings.IS_ADD_FRAGMENT_USED, Settings.isAddFragment);
+        editor.putBoolean(Settings.IS_REPLACE_FRAGMENT_USED, Settings.isReplaceFragment);
         editor.apply();
+    }
+
+    private void loadSettings() {
+        SharedPreferences shared = requireActivity().getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        Settings.isBackRemove = shared.getBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, false);
+        Settings.isBackStack = shared.getBoolean(Settings.IS_BACK_STACK_USED, false);
+        Settings.isAddFragment = shared.getBoolean(Settings.IS_ADD_FRAGMENT_USED, true);
+        Settings.isReplaceFragment = shared.getBoolean(Settings.IS_REPLACE_FRAGMENT_USED, false);
+        Settings.isDeleteBeforeAdd = shared.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, false);
     }
 }

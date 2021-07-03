@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                if(Settings.isBackRemove) {
+                if (Settings.isBackRemove) {
                     List<Fragment> fragmentList = fragmentManager.getFragments();
                     for (int i = 0; i < fragmentList.size(); i++) {
                         Fragment fragment = fragmentList.get(i);
@@ -136,4 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
