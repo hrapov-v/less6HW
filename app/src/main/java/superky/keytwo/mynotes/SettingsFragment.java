@@ -1,10 +1,14 @@
 package superky.keytwo.mynotes;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 public class SettingsFragment extends Fragment {
@@ -19,5 +23,27 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initView(View view) {
+        initSwitchBackStack(view);
+
+
+    }
+
+    private void initSwitchBackStack(View view) {
+        SwitchCompat switchCompatBackStack = view.findViewById(R.id.swichBackStack);
+        switchCompatBackStack.setChecked(Settings.isBackStack);
+        switchCompatBackStack.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Settings.isBackStack = isChecked;
+                saveSettings();
+            }
+        });
+    }
+
+    private void saveSettings() {
+        SharedPreferences shared = requireActivity().getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(Settings.IS_BACK_STACK_USED, Settings.isBackStack);
+        editor.apply();
     }
 }
