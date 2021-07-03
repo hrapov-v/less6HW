@@ -6,4 +6,5 @@
     <string name="btnStgnsTxt">Settings</string>
     <string name="btnMainTxt">Main</string>
     <string name="btnInfoTxt">Info</string>
+    <string name="infoTxtFragment">INFO</string>
 </resources>
