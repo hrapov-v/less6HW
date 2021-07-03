@@ -22,17 +22,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        initButtonBack();
+        initButtonMain();
+        initButtonSettings();
+        initButtonInfo();
+    }
+
+    private void initButtonBack() {
         Button buttonBack = findViewById(R.id.btnBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                if(Settings.isBackRemove) {
+                    List<Fragment> fragmentList = fragmentManager.getFragments();
+                    for (int i = 0; i < fragmentList.size(); i++) {
+                        Fragment fragment = fragmentList.get(i);
+                        if (fragment.isVisible()) {
+                            fragmentTransaction.remove(fragment);
+                        }
+                    }
+                } else {
+                    fragmentManager.popBackStack();
+                }
             }
         });
-        initButtonMain();
-        initButtonSettings();
-        initButtonInfo();
-
     }
 
     private void initButtonSettings() {
