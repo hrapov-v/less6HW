@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/swichBackStack"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/infoTxtSzFrg"
-        android:text="@string/infoTxtFragment"
-        android:layout_gravity="center"/>
+        android:text="USE BACK STACK"
+        android:textSize="@dimen/SzBody" />
 
-</FrameLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioBtnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textSize="@dimen/SzBody" />
+
+        <RadioButton
+            android:id="@+id/radioBtnReplace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Replace"
+            android:textSize="@dimen/SzBody" />
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/swichBackAsRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back as remove fragment"
+        android:textSize="@dimen/SzBody" />
+
+    <Switch
+        android:id="@+id/swichBackDeleteBeforeAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete before add"
+        android:textSize="@dimen/SzBody" />
+
+</LinearLayout>

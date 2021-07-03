@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/infoTxtSzFrg"
+        android:textSize="@dimen/SzName"
         android:text="@string/infoTxtFragment"
         android:layout_gravity="center"/>
 
