@@ -11,7 +11,7 @@
         android:id="@+id/BtnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/btnBackTxt"
         app:layout_constraintEnd_toStartOf="@id/btnStgns"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/btnStgns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/btnStgnsTxt"
         app:layout_constraintEnd_toEndOf="@id/btnMain"
         app:layout_constraintStart_toEndOf="@id/BtnBack"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:id="@+id/btnMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main"
+        android:text="@string/btnMainTxt"
         app:layout_constraintEnd_toStartOf="@id/btnInfo"
         app:layout_constraintStart_toEndOf="@id/btnStgns"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
         android:id="@+id/btnInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Info"
+        android:text="@string/btnInfoTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnMain"
         app:layout_constraintTop_toTopOf="parent" />
