@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
+        drawerMenuAction(navigationView);
+        initButtonBack();
+        initButtonMain();
+        initButtonSettings();
+        initButtonInfo();
+    }
+
+    private void drawerMenuAction(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -65,10 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        initButtonBack();
-        initButtonMain();
-        initButtonSettings();
-        initButtonInfo();
     }
 
     @Override
