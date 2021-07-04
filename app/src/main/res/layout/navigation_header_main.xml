@@ -10,6 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_menu_txt" />
+        android:text="@string/nav_menu_txt"
+        android:textSize="@dimen/SzName"/>
 
 </LinearLayout>
