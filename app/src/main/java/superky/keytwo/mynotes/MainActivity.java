@@ -2,6 +2,7 @@ package superky.keytwo.mynotes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 
 
 import java.util.List;
@@ -44,18 +46,18 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (id) {
             case R.id.action_settings:
-                fragmentTransaction.add(R.id.container_fragment, new SettingsFragment());
+                fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_main:
-                fragmentTransaction.add(R.id.container_fragment, new MainFragment());
+                fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_search:
 
                 return true;
             case R.id.action_info:
-                fragmentTransaction.add(R.id.container_fragment, new InfoFragment());
+                fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
                 fragmentTransaction.commit();
                 return true;
         }
@@ -65,7 +67,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        
+        MenuItem menuItemSeacrh = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItemSeacrh.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 

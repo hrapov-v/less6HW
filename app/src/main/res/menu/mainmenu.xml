@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="2"
         android:icon="@android:drawable/ic_menu_manage"
+        android:orderInCategory="2"
         android:title="@string/btnStgnsTxt"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_main"
-        android:orderInCategory="1"
         android:icon="@android:drawable/ic_menu_my_calendar"
+        android:orderInCategory="1"
         android:title="@string/btnMainTxt"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_info"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="4"
         android:title="@string/btnInfoTxt"
-        android:icon="@android:drawable/ic_menu_info_details"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="3"
         android:title="@string/search_action_ttl"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
 
 </menu>
