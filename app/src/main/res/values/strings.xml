@@ -18,4 +18,6 @@
     <string name="action_stgns_ttl">Settings</string>
     <string name="search_action_ttl">Search</string>
     <string name="nav_menu_txt">Меню</string>
+    <string name="open_drawer_menu">Открыли</string>
+    <string name="close_drawer_menu">Закрыли</string>
 </resources>
