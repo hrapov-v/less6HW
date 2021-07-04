@@ -6,28 +6,28 @@
         android:orderInCategory="2"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/btnStgnsTxt"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_main"
         android:orderInCategory="1"
         android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="@string/btnMainTxt"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_info"
         android:orderInCategory="4"
         android:title="@string/btnInfoTxt"
         android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_search"
         android:orderInCategory="3"
         android:title="@string/search_action_ttl"
         android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 
 </menu>

@@ -1,6 +1,8 @@
 package superky.keytwo.mynotes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,8 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 
 import java.util.List;
 
@@ -24,10 +29,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         initButtonBack();
         initButtonMain();
         initButtonSettings();
         initButtonInfo();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        switch (id) {
+            case R.id.action_settings:
+                fragmentTransaction.add(R.id.container_fragment, new SettingsFragment());
+                fragmentTransaction.commit();
+                return true;
+            case R.id.action_main:
+                fragmentTransaction.add(R.id.container_fragment, new MainFragment());
+                fragmentTransaction.commit();
+                return true;
+            case R.id.action_search:
+
+                return true;
+            case R.id.action_info:
+                fragmentTransaction.add(R.id.container_fragment, new InfoFragment());
+                fragmentTransaction.commit();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void initButtonBack() {
