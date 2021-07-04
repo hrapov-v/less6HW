@@ -16,4 +16,5 @@
     <string name="my_code_link">My code: https://github.com/hrapov-v/less6HW</string>
     <string name="welcomeTxt">©SUPER NOTES</string>
     <string name="action_stgns_ttl">Settings</string>
+    <string name="search_action_ttl">Search</string>
 </resources>

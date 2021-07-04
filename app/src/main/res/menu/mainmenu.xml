@@ -17,9 +17,16 @@
 
     <item
         android:id="@+id/action_info"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/btnInfoTxt"
         android:icon="@android:drawable/ic_menu_info_details"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="3"
+        android:title="@string/search_action_ttl"
+        android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="ifRoom" />
 
 
