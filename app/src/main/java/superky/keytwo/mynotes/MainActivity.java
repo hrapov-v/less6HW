@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     fragmentManager.popBackStack();
                 }
+                fragmentTransaction.commit();
             }
         });
     }
