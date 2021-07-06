@@ -54,7 +54,7 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createTextView((LinearLayout) view);
+//        createTextView((LinearLayout) view);
     }
 
     private void createTextView(@NonNull LinearLayout linearLayout) {
