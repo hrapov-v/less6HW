@@ -31,7 +31,7 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 5;
     }
 
     public class NotesViewHolder extends RecyclerView.ViewHolder {

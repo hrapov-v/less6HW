@@ -30,11 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_main);
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-//            ViewNotes viewNotes = new ViewNotes();
-//            getSupportFragmentManager().beginTransaction().replace(
-//                    R.id.notes_container_land, viewNotes).commit();
-//        }
         initView();
 
     }
@@ -223,9 +218,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (Settings.isAddFragment) {
-                    fragmentTransaction.add(R.id.container_fragment, new MainFragment());
+                    fragmentTransaction.add(R.id.container_fragment, SuperNotesFragment.newInstance());
                 } else {
-                    fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
+                    fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
                 }
                 if (Settings.isBackStack) {
                     fragmentTransaction.addToBackStack(null);
