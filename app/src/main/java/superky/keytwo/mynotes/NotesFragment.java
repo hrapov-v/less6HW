@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class NotesFragment extends Fragment {
         String[] notes = getResources().getStringArray(R.array.notes);
         LayoutInflater layoutInflater = getLayoutInflater();
         for (int i = 0; i < notes.length; i++) {
+            Log.d("superlog",i + " " + notes[i]);
             View item = layoutInflater.inflate(R.layout.list_item, linearLayout, false);
             TextView textView = item.findViewById(R.id.list_note);
             textView.setText(notes[i]);
