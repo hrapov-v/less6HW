@@ -58,9 +58,10 @@ public class NotesFragment extends Fragment {
 
     private void createTextView(@NonNull LinearLayout linearLayout) {
         String[] notes = getResources().getStringArray(R.array.notes);
+        LayoutInflater layoutInflater = getLayoutInflater();
         for (int i = 0; i < notes.length; i++) {
-//            ScrollView scrollView = new ScrollView(getContext());
-            TextView textView = new TextView(getContext());
+            View item = layoutInflater.inflate(R.layout.list_item, linearLayout, false);
+            TextView textView = item.findViewById(R.id.list_note);
             textView.setText(notes[i]);
             final int finalI = i;
             textView.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +75,7 @@ public class NotesFragment extends Fragment {
                 }
             });
             textView.setTextSize(45);
-            linearLayout.addView(textView);
-//            linearLayout.addView(scrollView);
+            linearLayout.addView(item);
         }
     }
 
