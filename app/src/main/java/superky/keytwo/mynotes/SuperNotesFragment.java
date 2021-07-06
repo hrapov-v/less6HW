@@ -3,6 +3,7 @@ package superky.keytwo.mynotes;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +22,6 @@ public class SuperNotesFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +35,13 @@ public class SuperNotesFragment extends Fragment {
         superNotesAdapter.SetOnMyClickListenner(new OnMyClickListenner() {
             @Override
             public void onMyClick(View view, int position) {
-
+                view = inflater.inflate(R.layout.fragment_view_notes, container, false);
+                TextView textView = view.findViewById(R.id.note_name_view);
+                EditText editText = view.findViewById(R.id.view_note);
+                String[] sName = getResources().getStringArray(R.array.notes);
+                String[] sBody = getResources().getStringArray(R.array.noteBody);
+                textView.setText(sName[position]);
+                editText.setText(sBody[position]);
             }
         });
         recyclerView.setAdapter(superNotesAdapter);

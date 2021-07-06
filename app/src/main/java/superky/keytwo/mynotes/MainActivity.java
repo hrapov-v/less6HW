@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.commit();
                         return true;
                     case R.id.action_main:
-                        fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
+                        fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
                         fragmentTransaction.commit();
                         return true;
                     case R.id.action_info:
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_main:
-                fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
+                fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_search:
