@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_main);
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            ViewNotes viewNotes = new ViewNotes();
+//            getSupportFragmentManager().beginTransaction().replace(
+//                    R.id.notes_container_land, viewNotes).commit();
+//        }
         initView();
 
     }
