@@ -1,5 +1,7 @@
 package superky.keytwo.mynotes;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,12 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     private String[] dataSource;
 
+    private OnMyClickListenner onMyClickListenner;
+
+    public void SetOnMyClickListenner(OnMyClickListenner onMyClickListenner) {
+        this.onMyClickListenner = onMyClickListenner;
+    }
+
     public SuperNotesAdapter(String[] dataSource) {
         this.dataSource = dataSource;
     }
@@ -20,7 +28,6 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
     @Override
     public NotesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-
         return new NotesViewHolder(view);
     }
 
@@ -31,8 +38,9 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     @Override
     public int getItemCount() {
-        return 5;
+        return dataSource.length;
     }
+
 
     public class NotesViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,6 +50,12 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = ((LinearLayout) itemView).findViewById(R.id.list_note);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onMyClickListenner.onMyClick(view, getAdapterPosition());
+                }
+            });
         }
 
         public TextView getTextView() {

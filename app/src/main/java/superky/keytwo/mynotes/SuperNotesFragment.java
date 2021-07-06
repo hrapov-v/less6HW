@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class SuperNotesFragment extends Fragment {
@@ -30,6 +32,12 @@ public class SuperNotesFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()); //указал в макете но оставил чисто как в уроке
         recyclerView.setLayoutManager(layoutManager);
         SuperNotesAdapter superNotesAdapter = new SuperNotesAdapter(data);
+        superNotesAdapter.SetOnMyClickListenner(new OnMyClickListenner() {
+            @Override
+            public void onMyClick(View view, int position) {
+
+            }
+        });
         recyclerView.setAdapter(superNotesAdapter);
         return view;
     }
