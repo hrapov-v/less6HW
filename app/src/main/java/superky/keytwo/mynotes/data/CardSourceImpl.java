@@ -40,6 +40,26 @@ public class CardSourceImpl implements CardSource {
         return dataSource.get(position);
     }
 
+    @Override
+    public void addCardData(CardData cardData) {
+        dataSource.add(cardData);
+    }
+
+    @Override
+    public void deleteCardData(int position) {
+
+    }
+
+    @Override
+    public void updateCardData(int position, CardData cardData) {
+
+    }
+
+    @Override
+    public void clearCardData() {
+
+    }
+
     public List<CardData> getDataSource() {
         return dataSource;
     }

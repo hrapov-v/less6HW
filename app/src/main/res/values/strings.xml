@@ -20,4 +20,6 @@
     <string name="nav_menu_txt">Меню</string>
     <string name="open_drawer_menu">Открыли</string>
     <string name="close_drawer_menu">Закрыли</string>
+    <string name="deleteNoteMenuBtn">Удалить заметку</string>
+    <string name="addNoteMenuBtn">Добавить заметку</string>
 </resources>
