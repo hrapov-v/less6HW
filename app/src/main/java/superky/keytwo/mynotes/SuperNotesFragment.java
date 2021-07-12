@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,6 +43,23 @@ public class SuperNotesFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         //Запихиваем это меню в контейнер меню который приходит в этом методе.
         inflater.inflate(R.menu.fragment_menu, menu);
+    }
+
+    //переопределяю клики по меню.
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.action_add:
+                return true;
+            case R.id.action_delete:
+                //Благодаря интерфейсу из урока эти методы будут работать если данные поступят откуда угодно.
+                data.clearCardData();
+                //эта команда обнуляет все элементы
+                superNotesAdapter.notifyDataSetChanged();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initList(RecyclerView recyclerView) {
