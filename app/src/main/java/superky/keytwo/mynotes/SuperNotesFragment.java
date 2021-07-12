@@ -1,5 +1,6 @@
 package superky.keytwo.mynotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SuperNotesFragment extends Fragment {
@@ -35,16 +37,22 @@ public class SuperNotesFragment extends Fragment {
         superNotesAdapter.SetOnMyClickListenner(new OnMyClickListenner() {
             @Override
             public void onMyClick(View view, int position) {
-                view = inflater.inflate(R.layout.fragment_view_notes, container, false);
-                TextView textView = view.findViewById(R.id.note_name_view);
-                EditText editText = view.findViewById(R.id.view_note);
-                String[] sName = getResources().getStringArray(R.array.notes);
-                String[] sBody = getResources().getStringArray(R.array.noteBody);
-                textView.setText(sName[position]);
-                editText.setText(sBody[position]);
+                viewNotes(position, inflater, container);
             }
         });
         recyclerView.setAdapter(superNotesAdapter);
         return view;
     }
+
+    private void viewNotes(int position, LayoutInflater inflater, ViewGroup container) {
+        View view;
+        view = inflater.inflate(R.layout.fragment_view_notes, container, false);
+        TextView textView = view.findViewById(R.id.note_name_view);
+        EditText editText = view.findViewById(R.id.view_note);
+        String[] sName = getResources().getStringArray(R.array.notes);
+        String[] sBody = getResources().getStringArray(R.array.noteBody);
+        textView.setText(sName[position]);
+        editText.setText(sBody[position]);
+    }
+
 }
