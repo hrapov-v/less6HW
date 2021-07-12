@@ -1,5 +1,6 @@
 package superky.keytwo.mynotes;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import superky.keytwo.mynotes.data.CardData;
@@ -16,14 +19,17 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     private CardSource dataSource;
 
+    Fragment fragment;
+
     private OnMyClickListenner onMyClickListenner;
 
     public void SetOnMyClickListenner(OnMyClickListenner onMyClickListenner) {
         this.onMyClickListenner = onMyClickListenner;
     }
 
-    public SuperNotesAdapter(CardSource dataSource) {
+    public SuperNotesAdapter(CardSource dataSource, Fragment fragment) {
         this.dataSource = dataSource;
+        this.fragment = fragment;
     }
 
     @Override
@@ -50,23 +56,25 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
         private EditText noteBody;
 
 
-
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
-            noteName = (itemView).findViewById(R.id.note_name);
-            noteBody = (itemView).findViewById(R.id.note_body);
-            noteName.setOnClickListener(new View.OnClickListener() {
+            this.noteName = (itemView).findViewById(R.id.note_name);
+            this.noteBody = (itemView).findViewById(R.id.note_body);
+            fragment.registerForContextMenu(itemView);
+            this.noteName.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
-                    onMyClickListenner.onMyClick(view, getAdapterPosition());
+//                    onMyClickListenner.onMyClick(view, getAdapterPosition());
+                    //координаты где будет отображатся контекстное меню
+                    view.showContextMenu(0,0);
                 }
             });
         }
 
         private void setData(CardData cardData) {
-            noteName.setText(cardData.getNote());
-            noteBody.setText(cardData.getNoteBody());
-
+            this.noteName.setText(cardData.getNote());
+            this.noteBody.setText(cardData.getNoteBody());
         }
 
     }
