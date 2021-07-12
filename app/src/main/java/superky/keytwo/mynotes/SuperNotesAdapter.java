@@ -1,19 +1,19 @@
 package superky.keytwo.mynotes;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import superky.keytwo.mynotes.data.CardData;
+import superky.keytwo.mynotes.data.CardSource;
+
 public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.NotesViewHolder> {
 
-    private String[] dataSource;
+    private CardSource dataSource;
 
     private OnMyClickListenner onMyClickListenner;
 
@@ -21,7 +21,7 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
         this.onMyClickListenner = onMyClickListenner;
     }
 
-    public SuperNotesAdapter(String[] dataSource) {
+    public SuperNotesAdapter(CardSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -33,24 +33,28 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     @Override
     public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
-        holder.getTextView().setText(this.dataSource[position]);
+        holder.setData(dataSource.getCardData(position));
     }
+
 
     @Override
     public int getItemCount() {
-        return dataSource.length;
+        return dataSource.size();
     }
 
 
     public class NotesViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private TextView noteName;
+        private TextView noteBody;
+
 
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = ((LinearLayout) itemView).findViewById(R.id.list_note);
-            textView.setOnClickListener(new View.OnClickListener() {
+            noteName = (itemView).findViewById(R.id.note_name);
+            noteBody = (itemView).findViewById(R.id.note_body);
+            noteName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onMyClickListenner.onMyClick(view, getAdapterPosition());
@@ -58,8 +62,11 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
             });
         }
 
-        public TextView getTextView() {
-            return textView;
+        private void setData(CardData cardData) {
+            noteName.setText(cardData.getNote());
+            noteBody.setText(cardData.getNoteBody());
+
         }
+
     }
 }

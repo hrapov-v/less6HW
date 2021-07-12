@@ -1,4 +1,46 @@
 package superky.keytwo.mynotes.data;
 
-public class CardSourceImpl {
+import android.content.res.Resources;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import superky.keytwo.mynotes.R;
+
+public class CardSourceImpl implements CardSource {
+    private List<CardData> dataSource;
+    private Resources resources;
+
+    public CardSourceImpl(Resources resources) {
+        this.resources = resources;
+        dataSource = new ArrayList<>();
+    }
+
+    public List<CardData> init(){
+        String[] notes = resources.getStringArray(R.array.notes);
+        String[] noteBody = resources.getStringArray(R.array.noteBody);
+        for (int i = 0; i < notes.length; i++) {
+            dataSource.add(new CardData(notes[i], noteBody[i]));
+        }
+        return dataSource;
+    }
+
+    @Override
+    public String getAddress() {
+        return "null";
+    }
+
+    @Override
+    public int size() {
+        return dataSource.size();
+    }
+
+    @Override
+    public CardData getCardData(int position) {
+        return dataSource.get(position);
+    }
+
+    public List<CardData> getDataSource() {
+        return dataSource;
+    }
 }
