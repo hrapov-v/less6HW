@@ -19,6 +19,12 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
 
     private CardSource dataSource;
 
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
     Fragment fragment;
 
     private OnMyClickListenner onMyClickListenner;
@@ -61,11 +67,13 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
             this.noteName = (itemView).findViewById(R.id.note_name);
             this.noteBody = (itemView).findViewById(R.id.note_body);
             fragment.registerForContextMenu(itemView);
+            // можно использовать onLongClickListenner для долгого нажатия.
             this.noteName.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
 //                    onMyClickListenner.onMyClick(view, getAdapterPosition());
+                    position = getLayoutPosition();
                     //координаты где будет отображатся контекстное меню
                     view.showContextMenu(0,0);
                 }

@@ -78,6 +78,28 @@ public class SuperNotesFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        //Задали позицию в адаптере
+        int position = superNotesAdapter.getPosition();
+        switch (item.getItemId()){
+            case R.id.action_add:
+                data.addCardData(new CardData("Обновлённая заметка " + data.getCardData(position).getNote(),
+                        "Обновлённое описание " + data.getCardData(position).getNoteBody()));
+                // обновляем позицию data.size() - 1
+                superNotesAdapter.notifyItemInserted(data.size() - 1);
+                //метод позволяющий скролить до нужной позиции
+                recyclerView.smoothScrollToPosition(data.size() - 1);
+                return true;
+            case R.id.action_delete:
+                data.deleteCardData(position);
+                //не забываем обновлять
+                superNotesAdapter.notifyItemRemoved(position);
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
     private void initList(RecyclerView recyclerView) {
         data = new CardSourceImpl(getResources());
         data.init();
