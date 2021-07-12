@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import superky.keytwo.mynotes.data.CardData;
 import superky.keytwo.mynotes.data.CardSourceImpl;
 
 
@@ -51,6 +52,11 @@ public class SuperNotesFragment extends Fragment {
 //        return super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.action_add:
+                data.addCardData(new CardData("Как то иначе " + (data.size() + 1), "Как то иначе описание " + (data.size() + 1)));
+                // обновляем позицию data.size() - 1
+                superNotesAdapter.notifyItemInserted(data.size() - 1);
+                //метод позволяющий скролить до нужной позиции
+                recyclerView.scrollToPosition(data.size() - 1);
                 return true;
             case R.id.action_delete:
                 //Благодаря интерфейсу из урока эти методы будут работать если данные поступят откуда угодно.

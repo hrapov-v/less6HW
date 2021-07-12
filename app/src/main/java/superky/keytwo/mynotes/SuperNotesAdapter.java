@@ -3,6 +3,7 @@ package superky.keytwo.mynotes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
     public class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private TextView noteName;
-        private TextView noteBody;
+        private EditText noteBody;
 
 
 
