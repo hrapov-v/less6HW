@@ -31,6 +31,7 @@ public class SuperNotesFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         String[] data = getResources().getStringArray(R.array.notes);
         recyclerView.setHasFixedSize(true);
+        //layoutManager их три вида линейный шахматный и ещё один.....
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()); //указал в макете но оставил чисто как в уроке
         recyclerView.setLayoutManager(layoutManager);
         SuperNotesAdapter superNotesAdapter = new SuperNotesAdapter(data);
