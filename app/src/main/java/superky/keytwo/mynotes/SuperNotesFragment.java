@@ -125,6 +125,8 @@ public class SuperNotesFragment extends Fragment {
         recyclerView.setAdapter(superNotesAdapter);
         DefaultItemAnimator animator = new DefaultItemAnimator();
         animator.setChangeDuration(500);
+        animator.setRemoveDuration(500);
+        animator.setAddDuration(500);
         recyclerView.setItemAnimator(animator);
     }
 
