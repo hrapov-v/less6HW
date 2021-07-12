@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +20,6 @@ import android.widget.Toast;
 public class SuperNotesFragment extends Fragment {
 
     public static SuperNotesFragment newInstance() {
-
         return new SuperNotesFragment();
     }
 
@@ -37,6 +37,7 @@ public class SuperNotesFragment extends Fragment {
         superNotesAdapter.SetOnMyClickListenner(new OnMyClickListenner() {
             @Override
             public void onMyClick(View view, int position) {
+
                 viewNotes(position, inflater, container);
             }
         });
