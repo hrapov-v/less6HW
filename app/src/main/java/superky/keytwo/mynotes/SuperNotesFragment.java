@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,7 +61,7 @@ public class SuperNotesFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        return super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add:
                 data.addCardData(new CardData("Как то иначе " + (data.size() + 1), "Как то иначе описание " + (data.size() + 1)));
                 // обновляем позицию data.size() - 1
@@ -82,20 +83,27 @@ public class SuperNotesFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         //Задали позицию в адаптере
         int position = superNotesAdapter.getPosition();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add:
-                data.addCardData(new CardData("Обновлённая заметка " + data.getCardData(position).getNote(),
-                        "Обновлённое описание " + data.getCardData(position).getNoteBody()));
+                data.addCardData(new CardData("Свеже добавленная заметка " + data.getCardData(position).getNote(),
+                        "Свеже добавленное описание " + data.getCardData(position).getNoteBody()));
                 // обновляем позицию data.size() - 1
                 superNotesAdapter.notifyItemInserted(data.size() - 1);
                 //метод позволяющий скролить до нужной позиции
                 recyclerView.smoothScrollToPosition(data.size() - 1);
+                return true;
+            case R.id.action_update:
+                data.updateCardData(position,new CardData("Измененная заметка " + data.getCardData(position).getNote(),
+                        "Измененное описание " + data.getCardData(position).getNoteBody()));
+                // обновляем позицию data.size() - 1
+                superNotesAdapter.notifyItemChanged(position);
                 return true;
             case R.id.action_delete:
                 data.deleteCardData(position);
                 //не забываем обновлять
                 superNotesAdapter.notifyItemRemoved(position);
                 return true;
+
         }
         return super.onContextItemSelected(item);
     }
@@ -115,6 +123,9 @@ public class SuperNotesFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(superNotesAdapter);
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setChangeDuration(500);
+        recyclerView.setItemAnimator(animator);
     }
 
 

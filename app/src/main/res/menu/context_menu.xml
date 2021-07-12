@@ -10,9 +10,16 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/action_update"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:orderInCategory="2"
+        android:title="Изменить заметку"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_delete"
         android:icon="@android:drawable/ic_menu_delete"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="@string/deleteNoteMenuBtn"
         app:showAsAction="always" />
 
