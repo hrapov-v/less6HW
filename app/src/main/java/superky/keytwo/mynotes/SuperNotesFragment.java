@@ -66,7 +66,7 @@ public class SuperNotesFragment extends Fragment {
                 data.addCardData(new CardData("Как то иначе " + (data.size() + 1), "Как то иначе описание " + (data.size() + 1)));
                 //Заново задаём связь списка с адаптером
                 recyclerView.setAdapter(superNotesAdapter);
-                // обновляем позицию data.size() - 1
+                // !! НЕ РАБОТАЕТ С ЭТИМ МЕТОДОМ!! обновляем позицию data.size() - 1
                 //superNotesAdapter.notifyItemInserted(data.size() - 1);
                 //метод позволяющий скролить до нужной позиции
                 recyclerView.smoothScrollToPosition(data.size() - 1);
