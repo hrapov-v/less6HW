@@ -1,7 +1,7 @@
 package superky.keytwo.mynotes.data;
 
 public interface CardSource {
-    String getAddress();
+    CardSource init(CardSourceResponse cardSourceResponse);
     int size();
     CardData getCardData(int position);
 

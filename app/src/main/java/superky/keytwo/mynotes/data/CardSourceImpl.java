@@ -25,9 +25,10 @@ public class CardSourceImpl implements CardSource {
         return dataSource;
     }
 
+
     @Override
-    public String getAddress() {
-        return "null";
+    public CardSource init(CardSourceResponse cardSourceResponse) {
+        return null;
     }
 
     @Override
