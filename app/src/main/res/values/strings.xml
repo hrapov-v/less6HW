@@ -22,4 +22,6 @@
     <string name="close_drawer_menu">Закрыли</string>
     <string name="deleteNoteMenuBtn">Удалить заметку</string>
     <string name="addNoteMenuBtn">Добавить заметку</string>
+    <string name="noteBodyTxt">Текст заметки</string>
+    <string name="titleNote">Заголовок</string>
 </resources>

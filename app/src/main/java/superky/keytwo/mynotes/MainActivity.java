@@ -26,10 +26,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Navigation navigation;
+//    private Publisher publisher = new Publisher();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_main);
+        navigation = new Navigation(getSupportFragmentManager());
         initView();
 
     }
