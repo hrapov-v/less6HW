@@ -7,11 +7,11 @@ import java.util.List;
 
 import superky.keytwo.mynotes.R;
 
-public class CardSourceImpl implements CardSource {
+public class CardSourcempl implements CardSource {
     private List<CardData> dataSource;
     private Resources resources;
 
-    public CardSourceImpl(Resources resources) {
+    public CardSourcempl(Resources resources) {
         this.resources = resources;
         dataSource = new ArrayList<>();
     }

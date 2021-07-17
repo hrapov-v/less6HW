@@ -1,5 +1,11 @@
 package superky.keytwo.mynotes;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,30 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
-
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Navigation navigation;
-//    private Publisher publisher = new Publisher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_main);
-        navigation = new Navigation(getSupportFragmentManager());
         initView();
 
     }
