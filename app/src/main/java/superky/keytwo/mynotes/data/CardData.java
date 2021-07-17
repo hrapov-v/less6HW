@@ -3,7 +3,7 @@ package superky.keytwo.mynotes.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class CardData {
+public class CardData implements Parcelable{
 
     private String id;
 
@@ -28,11 +28,13 @@ public class CardData {
         noteBody = in.readString();
     }
 
+    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(note);
         dest.writeString(noteBody);
     }
 
+    @Override
     public int describeContents() {
         return 0;
     }

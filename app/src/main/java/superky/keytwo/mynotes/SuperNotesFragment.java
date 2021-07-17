@@ -14,20 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import superky.keytwo.mynotes.data.CardData;
+import superky.keytwo.mynotes.data.CardSource;
 import superky.keytwo.mynotes.data.CardSourceResourceImpl;
+import superky.keytwo.mynotes.observer.Observer;
 import superky.keytwo.mynotes.observer.Publisher;
 
 
 public class SuperNotesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private CardSourceResourceImpl data;
+    private CardSource data;
     private SuperNotesAdapter superNotesAdapter;
-    private static final int MY_DEFAULT_DURATION = 1000;
+    private static final int MY_DEFAULT_DURATION = 500;
     private Navigation navigation;
     private Publisher publisher;
     private boolean moveToLastPosition;
@@ -42,15 +45,14 @@ public class SuperNotesFragment extends Fragment {
         // Получим источник данных для списка
         // Поскольку onCreateView запускается каждый раз,
         // при возврате в фрагмент, данные надо создавать один раз
-        data = new CardSourceResourceImpl(getResources()).init();
+        data = (CardSource) new CardSourceResourceImpl(getResources()).init();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_super_notes, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        initList(recyclerView);
+        initView(view);
         //ЗДЕСЬ важно этот метод указывает на то что наш фрагмент имеет собственное меню.
         setHasOptionsMenu(true);
         return view;
@@ -59,7 +61,7 @@ public class SuperNotesFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        MainActivity activity = (MainActivity)context;
+        MainActivity activity = (MainActivity) context;
         navigation = activity.getNavigation();
         publisher = activity.getPublisher();
     }
@@ -89,22 +91,24 @@ public class SuperNotesFragment extends Fragment {
     //переопределяю клики по меню.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.action_add:
-                data.addCardData(new CardData("Как то иначе " + (data.size() + 1), "Как то иначе описание " + (data.size() + 1)));
-                //Заново задаём связь списка с адаптером
-                recyclerView.setAdapter(superNotesAdapter);
-                // !! НЕ РАБОТАЕТ С ЭТИМ МЕТОДОМ!! обновляем позицию data.size() - 1
-                //superNotesAdapter.notifyItemInserted(data.size() - 1);
-                //метод позволяющий скролить до нужной позиции
-                recyclerView.smoothScrollToPosition(data.size() - 1);
+                navigation.addFragment(CardFragment.newInstance(), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateCardData(CardData cardData) {
+                        data.addCardData(cardData);
+                        superNotesAdapter.notifyItemInserted(data.size() - 1);
+                        // это сигнал, чтобы вызванный метод onCreateView
+                        // перепрыгнул на конец списка
+                        moveToLastPosition = true;
+                    }
+                });
                 return true;
             case R.id.action_delete:
-                //Благодаря интерфейсу из урока эти методы будут работать если данные поступят откуда угодно.
+                int size = data.size();
                 data.clearCardData();
-                //эта команда обнуляет все элементы
-                superNotesAdapter.notifyDataSetChanged();
+                superNotesAdapter.notifyItemRangeRemoved(0, size);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -113,33 +117,61 @@ public class SuperNotesFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         //Задали позицию в адаптере
-        int position = superNotesAdapter.getPosition();
+        final int position = superNotesAdapter.getMenuPosition();
         switch (item.getItemId()) {
-            case R.id.action_add:
-                data.addCardData(new CardData("Свеже добавленная заметка " + data.getCardData(position).getNote(),
-                        "Свеже добавленное описание " + data.getCardData(position).getNoteBody()));
-                // обновляем позицию data.size() - 1
-                superNotesAdapter.notifyItemInserted(data.size() - 1);
-                //метод позволяющий скролить до нужной позиции
-                recyclerView.smoothScrollToPosition(data.size() - 1);
-                return true;
             case R.id.action_update:
-                data.updateCardData(position,new CardData("Измененная заметка " + data.getCardData(position).getNote(),
-                        "Измененное описание " + data.getCardData(position).getNoteBody()));
-                // обновляем позицию data.size() - 1
-                superNotesAdapter.notifyItemChanged(position);
+                navigation.addFragment(CardFragment.newInstance(data.getCardData(position)), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateCardData(CardData cardData) {
+                        data.updateCardData(position, cardData);
+                        superNotesAdapter.notifyItemChanged(position);
+                    }
+                });
                 return true;
             case R.id.action_delete:
                 data.deleteCardData(position);
-                //не забываем обновлять
                 superNotesAdapter.notifyItemRemoved(position);
                 return true;
-
         }
         return super.onContextItemSelected(item);
     }
 
-    private void initList(RecyclerView recyclerView) {
+    private void initView(View view) {
+        recyclerView = view.findViewById(R.id.recyclerView);
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+
+        // Эта установка служит для повышения производительности системы
+        recyclerView.setHasFixedSize(true);
+
+        // Будем работать со встроенным менеджером
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Установим адаптер
+        superNotesAdapter = new SuperNotesAdapter(data, this);
+        recyclerView.setAdapter(superNotesAdapter);
+
+        // Добавим разделитель карточек
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator, null));
+        recyclerView.addItemDecoration(itemDecoration);
+
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setAddDuration(MY_DEFAULT_DURATION);
+        animator.setRemoveDuration(MY_DEFAULT_DURATION);
+        recyclerView.setItemAnimator(animator);
+
+        if (moveToLastPosition) {
+            recyclerView.smoothScrollToPosition(data.size() - 1);
+            moveToLastPosition = false;
+        }
+
+
+    /*private void initList(RecyclerView recyclerView) {
         data = new CardSourceResourceImpl(getResources());
         data.init();
         recyclerView.setHasFixedSize(true);
@@ -159,7 +191,8 @@ public class SuperNotesFragment extends Fragment {
         animator.setRemoveDuration(500);
         animator.setAddDuration(500);
         recyclerView.setItemAnimator(animator);
+    }*/
+
+
     }
-
-
 }

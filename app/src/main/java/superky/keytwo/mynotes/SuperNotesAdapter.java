@@ -4,6 +4,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +21,10 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
     private CardSource dataSource;
 
     private int position;
+
+    private AdapterView.OnItemClickListener itemClickListener;  // Слушатель будет устанавливаться извне
+
+    private int menuPosition;
 
     public int getPosition() {
         return position;
@@ -56,6 +61,16 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
     }
 
 
+    // Сеттер слушателя нажатий
+    public void SetOnItemClickListener(AdapterView.OnItemClickListener itemClickListener){
+        this.itemClickListener = itemClickListener;
+    }
+
+    public int getMenuPosition() {
+        return menuPosition;
+    }
+
+
     public class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private TextView noteName;
@@ -84,6 +99,7 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
             this.noteName.setText(cardData.getNote());
             this.noteBody.setText(cardData.getNoteBody());
         }
+
 
 //        private void registerContextMenu(@NonNull View itemView) {
 //            if (fragment != null){

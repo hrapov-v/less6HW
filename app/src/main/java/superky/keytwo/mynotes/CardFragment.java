@@ -2,25 +2,21 @@ package superky.keytwo.mynotes;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import ru.geekbrains.socialnetwork.MainActivity;
-import ru.geekbrains.socialnetwork.R;
-import ru.geekbrains.socialnetwork.data.CardData;
-import ru.geekbrains.socialnetwork.observe.Publisher;
 import superky.keytwo.mynotes.data.CardData;
+import superky.keytwo.mynotes.observer.Publisher;
 
 public class CardFragment extends Fragment {
 
@@ -29,9 +25,8 @@ public class CardFragment extends Fragment {
     private CardData cardData;      // Данные по карточке
     private Publisher publisher;    // Паблишер, с его помощью обмениваемся данными
 
-    private TextInputEditText title;
-    private TextInputEditText description;
-    private DatePicker datePicker;
+    private TextInputEditText noteName;
+    private TextInputEditText noteBody;
 
     // Для релактирования данных
     public static CardFragment newInstance(CardData cardData) {
@@ -96,49 +91,19 @@ public class CardFragment extends Fragment {
     }
 
     private CardData collectCardData(){
-        String title = this.title.getText().toString();
-        String description = this.description.getText().toString();
-        Date date = getDateFromDatePicker();
-        int picture;
-        boolean like;
-        if (cardData != null){
-            picture = cardData.getPicture();
-            like = cardData.isLike();
-        } else {
-            picture = R.drawable.nature1;
-            like = false;
-        }
-        return new CardData(title, description, picture, like, date);
-    }
-
-    // Получение даты из DatePicker
-    private Date getDateFromDatePicker() {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, this.datePicker.getYear());
-        cal.set(Calendar.MONTH, this.datePicker.getMonth());
-        cal.set(Calendar.DAY_OF_MONTH, this.datePicker.getDayOfMonth());
-        return cal.getTime();
+        String noteName = this.noteName.getText().toString();
+        String noteBody = this.noteBody.getText().toString();
+        return new CardData(noteName, noteBody);
     }
 
     private void initView(View view) {
-        title = view.findViewById(R.id.inputTitle);
-        description = view.findViewById(R.id.inputDescription);
-        datePicker = view.findViewById(R.id.inputDate);
+        noteName = view.findViewById(R.id.inputName);
+        noteBody = view.findViewById(R.id.inputNoteBody);
     }
 
     private void populateView(){
-        title.setText(cardData.getTitle());
-        description.setText(cardData.getDescription());
-        initDatePicker(cardData.getDate());
+        noteName.setText(cardData.getNote());
+        noteBody.setText(cardData.getNoteBody());
     }
 
-    // Установка даты в DatePicker
-    private void initDatePicker(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        this.datePicker.init(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH),
-                null);
-    }
 }
