@@ -20,13 +20,19 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
+import superky.keytwo.mynotes.observer.Publisher;
+
 public class MainActivity extends AppCompatActivity {
 
+    private Navigation navigation;
+    private Publisher publisher = new Publisher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_main);
+        navigation = new Navigation(getSupportFragmentManager());
+        getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
         initView();
 
     }
@@ -227,5 +233,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public Navigation getNavigation() {
+        return navigation;
+    }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    //?
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

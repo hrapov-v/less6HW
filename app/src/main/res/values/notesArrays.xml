@@ -3,25 +3,11 @@
     <string-array name="notes">
         <item>Note 1</item>
         <item>Note 2</item>
-        <item>Note 3</item>
-        <item>Note 4</item>
-        <item>Note 5</item>
-        <item>Note 6</item>
-        <item>Note 7</item>
-        <item>Note 8</item>
-
-
     </string-array>
 
     <string-array name="noteBody">
         <item>Text text text bla bla NOTE 1</item>
         <item>Text text text bla bla NOTE 2</item>
-        <item>Text text text bla bla NOTE 3</item>
-        <item>Text text text bla bla NOTE 4</item>
-        <item>Text text text bla bla NOTE 5</item>
-        <item>Text text text bla bla NOTE 6</item>
-        <item>Text text text bla bla NOTE 7</item>
-        <item>Text text text bla bla NOTE 8</item>
     </string-array>
 
 </resources>

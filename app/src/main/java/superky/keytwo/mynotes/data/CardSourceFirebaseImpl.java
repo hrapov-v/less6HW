@@ -59,21 +59,27 @@ public class CardSourceFirebaseImpl implements CardSource {
 
     @Override
     public void addCardData(CardData cardData) {
+        collectionReference.add(CardDataMapping.toDocument(cardData));
         cardsData.add(cardData);
     }
 
     @Override
     public void deleteCardData(int position) {
+        collectionReference.document(cardsData.get(position).getId()).delete();
         cardsData.remove(position);
     }
 
     @Override
     public void updateCardData(int position, CardData cardData) {
+        collectionReference.document(cardsData.get(position).getId()).set(CardDataMapping.toDocument(cardData));
         cardsData.set(position, cardData);
     }
 
     @Override
     public void clearCardData() {
+        for(CardData cardData : cardsData) {
+            collectionReference.document(cardData.getId()).delete();
+        }
         cardsData.clear();
     }
 

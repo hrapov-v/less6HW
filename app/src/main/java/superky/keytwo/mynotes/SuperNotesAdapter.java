@@ -85,5 +85,18 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
             this.noteBody.setText(cardData.getNoteBody());
         }
 
+//        private void registerContextMenu(@NonNull View itemView) {
+//            if (fragment != null){
+//                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View v) {
+//                        menuPosition = getLayoutPosition();
+//                        return false;
+//                    }
+//                });
+//                fragment.registerForContextMenu(itemView);
+//            }
+//        }
+
     }
 }

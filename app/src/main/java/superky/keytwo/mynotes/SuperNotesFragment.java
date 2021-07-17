@@ -1,5 +1,6 @@
 package superky.keytwo.mynotes;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import superky.keytwo.mynotes.data.CardData;
 import superky.keytwo.mynotes.data.CardSourceResourceImpl;
+import superky.keytwo.mynotes.observer.Publisher;
 
 
 public class SuperNotesFragment extends Fragment {
@@ -25,11 +27,23 @@ public class SuperNotesFragment extends Fragment {
     private RecyclerView recyclerView;
     private CardSourceResourceImpl data;
     private SuperNotesAdapter superNotesAdapter;
+    private static final int MY_DEFAULT_DURATION = 1000;
+    private Navigation navigation;
+    private Publisher publisher;
+    private boolean moveToLastPosition;
 
     public static SuperNotesFragment newInstance() {
         return new SuperNotesFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Получим источник данных для списка
+        // Поскольку onCreateView запускается каждый раз,
+        // при возврате в фрагмент, данные надо создавать один раз
+        data = new CardSourceResourceImpl(getResources()).init();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +54,21 @@ public class SuperNotesFragment extends Fragment {
         //ЗДЕСЬ важно этот метод указывает на то что наш фрагмент имеет собственное меню.
         setHasOptionsMenu(true);
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        MainActivity activity = (MainActivity)context;
+        navigation = activity.getNavigation();
+        publisher = activity.getPublisher();
+    }
+
+    @Override
+    public void onDetach() {
+        navigation = null;
+        publisher = null;
+        super.onDetach();
     }
 
     //Внедряем options meny
