@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import superky.keytwo.mynotes.data.CardData;
-import superky.keytwo.mynotes.data.CardSourcempl;
+import superky.keytwo.mynotes.data.CardSourceResourceImpl;
 
 
 public class SuperNotesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private CardSourcempl data;
+    private CardSourceResourceImpl data;
     private SuperNotesAdapter superNotesAdapter;
 
     public static SuperNotesFragment newInstance() {
@@ -111,7 +111,7 @@ public class SuperNotesFragment extends Fragment {
     }
 
     private void initList(RecyclerView recyclerView) {
-        data = new CardSourcempl(getResources());
+        data = new CardSourceResourceImpl(getResources());
         data.init();
         recyclerView.setHasFixedSize(true);
         //layoutManager их три вида линейный шахматный и ещё один.....
