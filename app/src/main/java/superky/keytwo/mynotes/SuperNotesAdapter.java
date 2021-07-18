@@ -97,31 +97,39 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
                 @Override
                 public void onClick(View view) {
 //                    onMyClickListenner.onMyClick(view, getAdapterPosition());
-                    position = getLayoutPosition();
-                    //координаты где будет отображатся контекстное меню
-                    view.showContextMenu(0,0);
+                    menuPosition = getLayoutPosition();
+                    itemView.showContextMenu();
+                }
+            });
+            this.noteName.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    menuPosition = getLayoutPosition();
+                    itemView.showContextMenu(10, 10);
+                    return true;
                 }
             });
         }
+
+        private void registerContextMenu(@NonNull View itemView) {
+            if (fragment != null) {
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        menuPosition = getLayoutPosition();
+                        return false;
+                    }
+                });
+                fragment.registerForContextMenu(itemView);
+            }
+        }
+
 
         private void setData(CardData cardData) {
             this.noteName.setText(cardData.getNote());
             this.noteBody.setText(cardData.getNoteBody());
         }
 
-
-//        private void registerContextMenu(@NonNull View itemView) {
-//            if (fragment != null){
-//                itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                    @Override
-//                    public boolean onLongClick(View v) {
-//                        menuPosition = getLayoutPosition();
-//                        return false;
-//                    }
-//                });
-//                fragment.registerForContextMenu(itemView);
-//            }
-//        }
 
     }
 }
