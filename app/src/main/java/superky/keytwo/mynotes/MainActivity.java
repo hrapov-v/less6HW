@@ -66,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.commit();
                         return true;
                     case R.id.action_main:
-                        fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
-                        fragmentTransaction.commit();
+                        getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
                         return true;
                     case R.id.action_info:
                         fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
@@ -90,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_main:
-                fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
-                fragmentTransaction.commit();
+                getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
                 return true;
             case R.id.action_search:
 
@@ -221,7 +219,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (Settings.isAddFragment) {
-                    fragmentTransaction.add(R.id.container_fragment, SuperNotesFragment.newInstance());
+                    getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
+
                 } else {
                     fragmentTransaction.replace(R.id.container_fragment, SuperNotesFragment.newInstance());
                 }
