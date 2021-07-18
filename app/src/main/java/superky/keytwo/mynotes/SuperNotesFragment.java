@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import superky.keytwo.mynotes.data.CardData;
 import superky.keytwo.mynotes.data.CardSource;
 import superky.keytwo.mynotes.data.CardSourceResourceImpl;
@@ -45,7 +47,7 @@ public class SuperNotesFragment extends Fragment {
         // Получим источник данных для списка
         // Поскольку onCreateView запускается каждый раз,
         // при возврате в фрагмент, данные надо создавать один раз
-        data = (CardSource) new CardSourceResourceImpl(getResources()).init();
+        data = new CardSourceResourceImpl(getResources()).init();
     }
 
     @Override
@@ -155,11 +157,6 @@ public class SuperNotesFragment extends Fragment {
         superNotesAdapter = new SuperNotesAdapter(data, this);
         recyclerView.setAdapter(superNotesAdapter);
 
-        // Добавим разделитель карточек
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
-        itemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator, null));
-        recyclerView.addItemDecoration(itemDecoration);
-
         DefaultItemAnimator animator = new DefaultItemAnimator();
         animator.setAddDuration(MY_DEFAULT_DURATION);
         animator.setRemoveDuration(MY_DEFAULT_DURATION);
@@ -169,30 +166,6 @@ public class SuperNotesFragment extends Fragment {
             recyclerView.smoothScrollToPosition(data.size() - 1);
             moveToLastPosition = false;
         }
-
-
-    /*private void initList(RecyclerView recyclerView) {
-        data = new CardSourceResourceImpl(getResources());
-        data.init();
-        recyclerView.setHasFixedSize(true);
-        //layoutManager их три вида линейный шахматный и ещё один.....
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()); //указал в макете но оставил чисто как в уроке
-        recyclerView.setLayoutManager(layoutManager);
-        superNotesAdapter = new SuperNotesAdapter(data, this);
-        superNotesAdapter.SetOnMyClickListenner(new OnMyClickListenner() {
-            @Override
-            public void onMyClick(View view, int position) {
-
-            }
-        });
-        recyclerView.setAdapter(superNotesAdapter);
-        DefaultItemAnimator animator = new DefaultItemAnimator();
-        animator.setChangeDuration(500);
-        animator.setRemoveDuration(500);
-        animator.setAddDuration(500);
-        recyclerView.setItemAnimator(animator);
-    }*/
-
-
     }
+
 }

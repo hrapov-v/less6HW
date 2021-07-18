@@ -16,14 +16,26 @@ public class CardSourceResourceImpl implements CardSource {
         dataSource = new ArrayList<>();
     }
 
-    public List<CardData> init() {
+    public CardSourceResourceImpl init(){
+        // строки заголовков из ресурсов
+        String[] notes = resources.getStringArray(R.array.notes);
+        // строки описаний из ресурсов
+        String[] noteBody = resources.getStringArray(R.array.noteBody);
+
+        for (int i = 0; i < noteBody.length; i++) {
+            dataSource.add(new CardData(notes[i], noteBody[i]));
+        }
+        return this;
+    }
+
+    /*public List<CardData> init() {
         String[] notes = resources.getStringArray(R.array.notes);
         String[] noteBody = resources.getStringArray(R.array.noteBody);
         for (int i = 0; i < notes.length; i++) {
             dataSource.add(new CardData(notes[i], noteBody[i]));
         }
         return dataSource;
-    }
+    }*/
 
 
     @Override
