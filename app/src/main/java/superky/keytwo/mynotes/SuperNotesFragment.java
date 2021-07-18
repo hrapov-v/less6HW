@@ -60,6 +60,7 @@ public class SuperNotesFragment extends Fragment {
         initView(view);
         //ЗДЕСЬ важно этот метод указывает на то что наш фрагмент имеет собственное меню.
         setHasOptionsMenu(true);
+        //получаем данные и сохраняем в FireBase
         data = new CardSourceFirebaseImpl().init(new CardSourceResponse() {
             @Override
             public void initialized(CardSource cardSource) {
