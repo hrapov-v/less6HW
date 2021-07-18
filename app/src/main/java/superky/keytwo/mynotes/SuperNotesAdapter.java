@@ -43,6 +43,15 @@ public class SuperNotesAdapter extends RecyclerView.Adapter<SuperNotesAdapter.No
         this.fragment = fragment;
     }
 
+    public SuperNotesAdapter(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    public void setDataSource(CardSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
+    }
+
     @Override
     public NotesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);

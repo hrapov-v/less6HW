@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import superky.keytwo.mynotes.data.CardData;
+import superky.keytwo.mynotes.data.CardSource;
 import superky.keytwo.mynotes.observer.Publisher;
 
 public class CardFragment extends Fragment {
@@ -93,7 +94,13 @@ public class CardFragment extends Fragment {
     private CardData collectCardData(){
         String noteName = this.noteName.getText().toString();
         String noteBody = this.noteBody.getText().toString();
-        return new CardData(noteName, noteBody);
+        if (cardData != null) {
+            CardData answer = new CardData(noteName, noteBody);
+            answer.setId(cardData.getId());
+            return answer;
+        } else {
+            return new CardData(noteName, noteBody);
+        }
     }
 
     private void initView(View view) {

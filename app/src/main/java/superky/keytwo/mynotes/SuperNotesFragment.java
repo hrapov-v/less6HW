@@ -22,7 +22,9 @@ import java.util.List;
 
 import superky.keytwo.mynotes.data.CardData;
 import superky.keytwo.mynotes.data.CardSource;
+import superky.keytwo.mynotes.data.CardSourceFirebaseImpl;
 import superky.keytwo.mynotes.data.CardSourceResourceImpl;
+import superky.keytwo.mynotes.data.CardSourceResponse;
 import superky.keytwo.mynotes.observer.Observer;
 import superky.keytwo.mynotes.observer.Publisher;
 
@@ -47,7 +49,8 @@ public class SuperNotesFragment extends Fragment {
         // Получим источник данных для списка
         // Поскольку onCreateView запускается каждый раз,
         // при возврате в фрагмент, данные надо создавать один раз
-        data = new CardSourceResourceImpl(getResources()).init();
+        //data = new CardSourceResourceImpl(getResources()).init();
+
     }
 
     @Override
@@ -57,6 +60,13 @@ public class SuperNotesFragment extends Fragment {
         initView(view);
         //ЗДЕСЬ важно этот метод указывает на то что наш фрагмент имеет собственное меню.
         setHasOptionsMenu(true);
+        data = new CardSourceFirebaseImpl().init(new CardSourceResponse() {
+            @Override
+            public void initialized(CardSource cardSource) {
+
+            }
+        });
+        superNotesAdapter.setDataSource(data);
         return view;
     }
 
@@ -154,7 +164,7 @@ public class SuperNotesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Установим адаптер
-        superNotesAdapter = new SuperNotesAdapter(data, this);
+        superNotesAdapter = new SuperNotesAdapter(this);
         recyclerView.setAdapter(superNotesAdapter);
 
         DefaultItemAnimator animator = new DefaultItemAnimator();
