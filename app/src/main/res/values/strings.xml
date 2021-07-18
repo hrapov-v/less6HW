@@ -24,4 +24,6 @@
     <string name="addNoteMenuBtn">Добавить заметку</string>
     <string name="noteBodyTxt">Текст заметки</string>
     <string name="titleNote">Заголовок</string>
+    <string name="noteNameFragmentCard">Заголовок</string>
+    <string name="noteBodyFragmentCard">Описание</string>
 </resources>

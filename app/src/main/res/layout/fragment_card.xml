@@ -19,7 +19,7 @@
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Заголовок" />
+                android:hint="@string/noteNameFragmentCard" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -31,7 +31,8 @@
                 android:id="@+id/inputNoteBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Описание" />
+                android:hint="@string/noteBodyFragmentCard" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout></androidx.core.widget.NestedScrollView>

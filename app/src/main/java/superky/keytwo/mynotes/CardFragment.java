@@ -5,18 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Calendar;
-import java.util.Date;
+import com.google.android.material.textfield.TextInputLayout;
 
 import superky.keytwo.mynotes.data.CardData;
-import superky.keytwo.mynotes.data.CardSource;
 import superky.keytwo.mynotes.observer.Publisher;
 
 public class CardFragment extends Fragment {
