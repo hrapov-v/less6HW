@@ -64,7 +64,7 @@ public class SuperNotesFragment extends Fragment {
         data = new CardSourceFirebaseImpl().init(new CardSourceResponse() {
             @Override
             public void initialized(CardSource cardSource) {
-
+                superNotesAdapter.notifyDataSetChanged();
             }
         });
         superNotesAdapter.setDataSource(data);
@@ -133,12 +133,13 @@ public class SuperNotesFragment extends Fragment {
         final int position = superNotesAdapter.getMenuPosition();
         switch (item.getItemId()) {
             case R.id.action_update:
-                navigation.addFragment(CardFragment.newInstance(data.getCardData(position)), true);
+                final int updatePosition = superNotesAdapter.getMenuPosition();
+                navigation.addFragment(CardFragment.newInstance(data.getCardData(updatePosition)), true);
                 publisher.subscribe(new Observer() {
                     @Override
                     public void updateCardData(CardData cardData) {
-                        data.updateCardData(position, cardData);
-                        superNotesAdapter.notifyItemChanged(position);
+                        data.updateCardData(updatePosition, cardData);
+                        superNotesAdapter.notifyItemChanged(updatePosition);
                     }
                 });
                 return true;

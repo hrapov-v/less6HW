@@ -71,8 +71,11 @@ public class CardSourceFirebaseImpl implements CardSource {
 
     @Override
     public void updateCardData(int position, CardData cardData) {
-        collectionReference.document(cardsData.get(position).getId()).set(CardDataMapping.toDocument(cardData));
-        cardsData.set(position, cardData);
+//        collectionReference.document(cardsData.get(position).getId()).set(CardDataMapping.toDocument(cardData));
+//        cardsData.set(position, cardData);
+        String id = cardData.getId();
+        // Изменить документ по идентификатору
+        collectionReference.document(id).set(CardDataMapping.toDocument(cardData));
     }
 
     @Override
