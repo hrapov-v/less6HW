@@ -150,6 +150,19 @@ public class SuperNotesFragment extends Fragment {
             case R.id.action_delete:
                 alertDialogPositionDelete(position);
                 return true;
+            case R.id.action_add:
+                navigation.addFragment(CardFragment.newInstance(), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateCardData(CardData cardData) {
+                        data.addCardData(cardData);
+                        superNotesAdapter.notifyItemInserted(data.size() - 1);
+                        // это сигнал, чтобы вызванный метод onCreateView
+                        // перепрыгнул на конец списка
+                        moveToLastPosition = true;
+                    }
+                });
+                return true;
         }
         return super.onContextItemSelected(item);
     }

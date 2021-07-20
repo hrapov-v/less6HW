@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".MainActivity"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnBack"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btnBackTxt"
         app:layout_constraintEnd_toStartOf="@id/btnStgns"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,36 +32,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnMainTxt"
-        app:layout_constraintEnd_toStartOf="@id/btnInfo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnStgns"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnInfoTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnMain"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <Button-->
+    <!--        android:id="@+id/btnInfo"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/btnInfoTxt"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/btnMain"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <FrameLayout
+        android:id="@+id/container_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/container_fragment"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
     <TextView
+        android:id="@+id/welcomeTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/welcomeTxtView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_fragment"
+        android:text="@string/welcomeTxt"
         android:textSize="@dimen/SzBody"
         android:textStyle="italic"
-        android:text="@string/welcomeTxt"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_fragment" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

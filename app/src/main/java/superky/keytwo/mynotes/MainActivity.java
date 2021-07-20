@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         initButtonBack();
         initButtonMain();
         initButtonSettings();
-        initButtonInfo();
+        //Здесь поялялась кнопка инфо
+        //initButtonInfo();
     }
 
     private void drawerMenuAction(NavigationView navigationView) {
@@ -150,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initButtonInfo() {
+    //Тут была инициализация кнопки инфо
+    /*private void initButtonInfo() {
         Button buttonInfo = findViewById(R.id.btnInfo);
         buttonInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 infoAlert();
             }
         });
-    }
+    }*/
 
     private void initButtonMain() {
         Button buttonMain = findViewById(R.id.btnMain);
