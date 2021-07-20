@@ -1,10 +1,13 @@
 package superky.keytwo.mynotes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -69,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
                         return true;
                     case R.id.action_info:
-                        fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
-                        fragmentTransaction.commit();
+                        infoAlert();
                         return true;
                 }
                 return false;
@@ -95,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_info:
-                fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
-                fragmentTransaction.commit();
+                infoAlert();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -178,26 +179,7 @@ public class MainActivity extends AppCompatActivity {
         buttonInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                if (Settings.isDeleteBeforeAdd) {
-                    List<Fragment> fragmentList = fragmentManager.getFragments();
-                    for (int i = 0; i < fragmentList.size(); i++) {
-                        Fragment fragment = fragmentList.get(i);
-                        if (fragment.isVisible()) {
-                            fragmentTransaction.remove(fragment);
-                        }
-                    }
-                }
-                if (Settings.isAddFragment) {
-                    fragmentTransaction.add(R.id.container_fragment, new InfoFragment());
-                } else {
-                    fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
-                }
-                if (Settings.isBackStack) {
-                    fragmentTransaction.addToBackStack(null);
-                }
-                fragmentTransaction.commit();
+                infoAlert();
             }
         });
     }
@@ -245,5 +227,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void infoAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Информация")
+                .setMessage("My code: https://github.com/hrapov-v/less6HW")
+                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
