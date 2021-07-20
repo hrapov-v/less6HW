@@ -123,20 +123,7 @@ public class MainActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                if (Settings.isBackRemove) {
-                    List<Fragment> fragmentList = fragmentManager.getFragments();
-                    for (int i = 0; i < fragmentList.size(); i++) {
-                        Fragment fragment = fragmentList.get(i);
-                        if (fragment.isVisible()) {
-                            fragmentTransaction.remove(fragment);
-                        }
-                    }
-                } else {
-                    fragmentManager.popBackStack();
-                }
-                fragmentTransaction.commit();
+                alertBackDialog();
             }
         });
     }
@@ -257,6 +244,40 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void alertBackDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Кнопка 'BACK'")
+                .setMessage("Эта кнопка используется только для настроек, для того чтобы вернутся назад используйте кнопку назад в телефоне")
+                .setIcon(R.drawable.ic_menu_info_details)
+                .setNeutralButton("Использовать для настроек", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        if (Settings.isBackRemove) {
+                            List<Fragment> fragmentList = fragmentManager.getFragments();
+                            for (int i = 0; i < fragmentList.size(); i++) {
+                                Fragment fragment = fragmentList.get(i);
+                                if (fragment.isVisible()) {
+                                    fragmentTransaction.remove(fragment);
+                                }
+                            }
+                        } else {
+                            fragmentManager.popBackStack();
+                        }
+                        fragmentTransaction.commit();
+                    }
+                })
+                .setPositiveButton("Понятно", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

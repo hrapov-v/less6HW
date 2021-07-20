@@ -3,15 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainFragment">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Жуткие тестовые настройки из конспекта (не выношу в ресурсы временное Text VieW"
-        android:layout_gravity="center"/>
+        android:textSize="@dimen/SzName"
+        android:text="@string/settingsName"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/SzBody"
+        android:text="@string/settingsDescription"
+        android:textStyle="italic"/>
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swichBackStack"

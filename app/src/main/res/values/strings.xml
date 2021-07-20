@@ -26,4 +26,6 @@
     <string name="titleNote">Заголовок</string>
     <string name="noteNameFragmentCard">Заголовок</string>
     <string name="noteBodyFragmentCard">Описание</string>
+    <string name="settingsDescription">Test settings that have lost half of their functionality</string>
+    <string name="settingsName">Settings</string>
 </resources>

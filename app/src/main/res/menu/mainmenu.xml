@@ -7,7 +7,7 @@
         android:icon="@android:drawable/ic_menu_manage"
         android:orderInCategory="2"
         android:title="@string/btnStgnsTxt"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_main"
@@ -21,6 +21,6 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="4"
         android:title="@string/btnInfoTxt"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>
