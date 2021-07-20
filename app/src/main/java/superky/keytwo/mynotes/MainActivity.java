@@ -65,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (id) {
                     case R.id.action_settings:
-                        fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
-                        fragmentTransaction.commit();
+                        settingsDialogAlert();
                         return true;
                     case R.id.action_main:
                         getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
@@ -87,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (id) {
             case R.id.action_settings:
-                fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
-                fragmentTransaction.commit();
+                settingsDialogAlert();
                 return true;
             case R.id.action_main:
                 getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
@@ -150,26 +148,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                if (Settings.isDeleteBeforeAdd) {
-                    List<Fragment> fragmentList = fragmentManager.getFragments();
-                    for (int i = 0; i < fragmentList.size(); i++) {
-                        Fragment fragment = fragmentList.get(i);
-                        if (fragment.isVisible()) {
-                            fragmentTransaction.remove(fragment);
-                        }
-                    }
-                }
-                if (Settings.isAddFragment) {
-                    fragmentTransaction.add(R.id.container_fragment, new SettingsFragment());
-                } else {
-                    fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
-                }
-                if (Settings.isBackStack) {
-                    fragmentTransaction.addToBackStack(null);
-                }
-                fragmentTransaction.commit();
+                settingsDialogAlert();
             }
         });
     }
@@ -239,6 +218,44 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void settingsDialogAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Настройки")
+                .setMessage("Откроются жуткие тестовые настройки главное ничего не сломайте")
+                .setPositiveButton("Открыть", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        if (Settings.isDeleteBeforeAdd) {
+                            List<Fragment> fragmentList = fragmentManager.getFragments();
+                            for (int i = 0; i < fragmentList.size(); i++) {
+                                Fragment fragment = fragmentList.get(i);
+                                if (fragment.isVisible()) {
+                                    fragmentTransaction.remove(fragment);
+                                }
+                            }
+                        }
+                        if (Settings.isAddFragment) {
+                            fragmentTransaction.add(R.id.container_fragment, new SettingsFragment());
+                        } else {
+                            fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
+                        }
+                        if (Settings.isBackStack) {
+                            fragmentTransaction.addToBackStack(null);
+                        }
+                        fragmentTransaction.commit();
+                    }
+                }).setNeutralButton("Не открывать", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
