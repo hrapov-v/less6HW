@@ -1,6 +1,8 @@
 package superky.keytwo.mynotes;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -120,11 +122,34 @@ public class SuperNotesFragment extends Fragment {
                 return true;
             case R.id.action_delete:
                 int size = data.size();
-                data.clearCardData();
-                superNotesAdapter.notifyItemRangeRemoved(0, size);
+                AlertDialogAllDelete(size);
+                //До диалога было так
+//                data.clearCardData();
+//                superNotesAdapter.notifyItemRangeRemoved(0, size);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Метод диалога на удаление
+    private void AlertDialogAllDelete(int size) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Подтверждение удаления")
+                .setMessage("Подтвердите удаление данных")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        data.clearCardData();
+                        superNotesAdapter.notifyItemRangeRemoved(0, size);
+                    }
+                }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override
