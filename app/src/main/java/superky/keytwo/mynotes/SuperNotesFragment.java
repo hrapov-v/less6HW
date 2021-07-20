@@ -122,7 +122,7 @@ public class SuperNotesFragment extends Fragment {
                 return true;
             case R.id.action_delete:
                 int size = data.size();
-                AlertDialogAllDelete(size);
+                alertDialogAllDelete(size);
                 //До диалога было так
 //                data.clearCardData();
 //                superNotesAdapter.notifyItemRangeRemoved(0, size);
@@ -148,7 +148,7 @@ public class SuperNotesFragment extends Fragment {
                 });
                 return true;
             case R.id.action_delete:
-                AlertDialogPositionDelete(position);
+                alertDialogPositionDelete(position);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -184,7 +184,7 @@ public class SuperNotesFragment extends Fragment {
     }
 
     //Вызов диалога для удаления позиции
-    private void AlertDialogPositionDelete(int position) {
+    private void alertDialogPositionDelete(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Подтверждение удаления")
                 .setMessage("Подтвердите удаление данных")
@@ -205,7 +205,7 @@ public class SuperNotesFragment extends Fragment {
     }
 
     //Метод диалога на удаление
-    private void AlertDialogAllDelete(int size) {
+    private void alertDialogAllDelete(int size) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Подтверждение удаления")
                 .setMessage("Подтвердите удаление данных")
