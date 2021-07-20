@@ -1,9 +1,5 @@
 package superky.keytwo.mynotes.data;
 
-import android.content.res.Resources;
-
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -15,8 +11,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import superky.keytwo.mynotes.R;
 
 public class CardSourceFirebaseImpl implements CardSource {
 
