@@ -131,27 +131,6 @@ public class SuperNotesFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    //Метод диалога на удаление
-    private void AlertDialogAllDelete(int size) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Подтверждение удаления")
-                .setMessage("Подтвердите удаление данных")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        data.clearCardData();
-                        superNotesAdapter.notifyItemRangeRemoved(0, size);
-                    }
-                }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         //Задали позицию в адаптере
@@ -169,8 +148,7 @@ public class SuperNotesFragment extends Fragment {
                 });
                 return true;
             case R.id.action_delete:
-                data.deleteCardData(position);
-                superNotesAdapter.notifyItemRemoved(position);
+                AlertDialogPositionDelete(position);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -203,6 +181,48 @@ public class SuperNotesFragment extends Fragment {
             recyclerView.smoothScrollToPosition(data.size() - 1);
             moveToLastPosition = false;
         }
+    }
+
+    //Вызов диалога для удаления позиции
+    private void AlertDialogPositionDelete(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Подтверждение удаления")
+                .setMessage("Подтвердите удаление данных")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        data.deleteCardData(position);
+                        superNotesAdapter.notifyItemRemoved(position);
+                    }
+                }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    //Метод диалога на удаление
+    private void AlertDialogAllDelete(int size) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Подтверждение удаления")
+                .setMessage("Подтвердите удаление данных")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        data.clearCardData();
+                        superNotesAdapter.notifyItemRangeRemoved(0, size);
+                    }
+                }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }
