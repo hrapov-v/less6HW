@@ -90,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_main:
                 getNavigation().addFragment(SuperNotesFragment.newInstance(), false);
                 return true;
-            case R.id.action_search:
-
-                return true;
             case R.id.action_info:
                 infoAlert();
                 return true;
@@ -103,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        MenuItem menuItemSeacrh = menu.findItem(R.id.action_search);
+        //Раньше тут был поиск
+        /*MenuItem menuItemSeacrh = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) menuItemSeacrh.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
-        });
+        });*/
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -211,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Информация")
                 .setMessage("My code: https://github.com/hrapov-v/less6HW")
+                .setIcon(R.drawable.ic_menu_info_details)
                 .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -225,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Настройки")
                 .setMessage("Откроются жуткие тестовые настройки главное ничего не сломайте")
+                .setIcon(R.drawable.ic_menu_settings_holo_light)
                 .setPositiveButton("Открыть", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

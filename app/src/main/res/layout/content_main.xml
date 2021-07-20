@@ -60,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container_fragment"
         android:textSize="@dimen/SzBody"
+        android:textStyle="italic"
         android:text="@string/welcomeTxt"/>
 
 

@@ -188,6 +188,7 @@ public class SuperNotesFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Подтверждение удаления")
                 .setMessage("Подтвердите удаление данных")
+                .setIcon(R.drawable.ic_menu_delete)
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -209,6 +210,7 @@ public class SuperNotesFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Подтверждение удаления")
                 .setMessage("Подтвердите удаление данных")
+                .setIcon(R.drawable.ic_menu_delete)
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
