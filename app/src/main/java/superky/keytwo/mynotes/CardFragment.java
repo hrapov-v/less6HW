@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import superky.keytwo.mynotes.data.CardData;
 import superky.keytwo.mynotes.observer.Publisher;
